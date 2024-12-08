@@ -22,9 +22,24 @@ const Home = () => {
                     const canvas = originalCanvasRef.current;
                     const ctx = canvas.getContext("2d");
 
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
+                    // Get the width of the container
+                    const containerWidth =
+                        document.querySelector(".conversion-card").offsetWidth;
+
+                    // Calculate the scale factor based on the image width and container width
+                    const scaleFactor = Math.min(containerWidth / img.width, 1); // Ensure the image does not exceed container width
+                    const scaledWidth = img.width * scaleFactor; // Scale image width
+                    const scaledHeight = Math.round(img.height * scaleFactor); // Maintain aspect ratio
+
+                    // Set canvas dimensions
+                    canvas.width = scaledWidth;
+                    canvas.height = scaledHeight;
+
+                    // Set a max width of the container to prevent the container from resizing
+                    canvas.style.maxWidth = "100%";
+
+                    // Draw the image scaled to fit the canvas
+                    ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
                 };
                 img.src = event.target.result;
             };
@@ -50,10 +65,19 @@ const Home = () => {
 
             const img = new Image();
             img.onload = () => {
-                // Set processed canvas dimensions
-                processedCanvas.width = img.width;
-                processedCanvas.height = img.height;
-                ctx.drawImage(img, 0, 0);
+                // Get the width of the container for processed image
+                const containerWidth =
+                    document.querySelector(".conversion-card").offsetWidth;
+
+                // Calculate the scale factor based on the container width
+                const scaleFactor = Math.min(containerWidth / img.width, 1); // Ensure the image does not exceed container width
+                const scaledWidth = img.width * scaleFactor;
+                const scaledHeight = Math.round(img.height * scaleFactor); // Maintain aspect ratio
+
+                processedCanvas.width = scaledWidth;
+                processedCanvas.height = scaledHeight;
+
+                ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
 
                 // Enable the download link
                 processedCanvas.toBlob((processedBlob) => {
@@ -115,8 +139,8 @@ const Home = () => {
                                             display: originalFile
                                                 ? "block"
                                                 : "none",
-                                            maxWidth: "100%",
                                             margin: "10px auto",
+                                            maxWidth: "100%",
                                         }}
                                     />
                                 </div>
@@ -143,8 +167,8 @@ const Home = () => {
                                                 ?.width
                                                 ? "block"
                                                 : "none",
-                                            maxWidth: "100%",
                                             margin: "10px auto",
+                                            maxWidth: "100%",
                                         }}
                                     />
                                 </div>
