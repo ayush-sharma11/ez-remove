@@ -1,0 +1,74 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #f4f6f9;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.footer p {
+    margin: 0;
+}
+
+#preview {
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.conversion-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+#downloadLink {
+    display: none;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-gradient {
+    background: linear-gradient(135deg, #e65a5e, #e03444);
+
+    color: white;
+}
+
+.btn-convert {
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-convert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.policy-heading {
+    color: #e03444;
+    border-bottom: 2px solid #e03444;
+    padding-bottom: 10px;
+}
+
+.policy-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
